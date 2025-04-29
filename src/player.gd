@@ -1,6 +1,9 @@
 extends Area2D
 class_name Player
 
+signal score_earned()
+signal game_over()
+
 @export var SPEED: float = 300.0
 
 @onready var sprite_material: ShaderMaterial = $Sprite2D.material
@@ -65,5 +68,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is Line:
 		var line = area as Line
 
-		if line.current_color != current_color:
-			print("game over")
+		if line.current_color == current_color:
+			score_earned.emit()
+		else:
+			game_over.emit()

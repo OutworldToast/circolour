@@ -21,6 +21,12 @@ class_name Game
 
 const HUD_COLOUR_SCENE: PackedScene = preload("uid://dw1delj4qvwby")
 
+var current_score: int = 0:
+	set(value):
+		current_score = value
+		$CanvasLayer/HUD/ScoreLabel.text = str(current_score)
+
+
 func create_hud_color(colour: Color, key_string: String) -> void:
 
 	var hud_colour: HudColour = HUD_COLOUR_SCENE.instantiate()
@@ -57,3 +63,12 @@ func _on_line_finished_movement() -> void:
 		target_x = 0
 
 	line.move(Vector2(target_x, line.position.y), 1.5)
+
+
+func _on_player_score_earned() -> void:
+	current_score += 1
+	$PointEarnedAudio.play()
+
+func _on_player_game_over() -> void:
+	current_score = 0
+	$GameOverAudio.play()
