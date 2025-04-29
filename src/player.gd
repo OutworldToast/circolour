@@ -2,9 +2,15 @@ extends Area2D
 class_name Player
 
 @export var SPEED: float = 200.0
-@export var colours: Array[Color]
 
 @onready var sprite_material: ShaderMaterial = $Sprite2D.material as ShaderMaterial
+
+var colors: Array[Color]:
+	set(value):
+		colors = value
+
+		if colors.size() > 0:
+			current_color = colors[0]
 
 var keys: Array[Key] = [
 	KEY_KP_7,
@@ -23,20 +29,20 @@ var current_color: Color:
 		current_color = value
 		sprite_material.set_shader_parameter("color", value)
 
-func _ready() -> void:
-	if colours:
-		current_color = colours[0]
-	else:
-		print("No colours provided, using default color.")
-
 func _input(event: InputEvent) -> void:
 
+	# check if the event is a key press
 	if event is InputEventKey and event.is_pressed():
 
+		# get the index of the key pressed
 		var index: int = keys.find(event.keycode)
 
-		if not index == -1 and index < colours.size():
-			current_color = colours[index]
+		# if there is an index and it is within the bounds of the colors array
+		if not index == -1 and index < colors.size():
+
+			# set the current color to the color at that index
+			# the setter for current color will change the color in the shader
+			current_color = colors[index]
 
 func _process(delta: float) -> void:
 

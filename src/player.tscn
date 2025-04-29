@@ -16,7 +16,6 @@ radius = 19.0
 
 [node name="Player" type="Area2D"]
 script = ExtResource("1_gmfve")
-colours = Array[Color]([Color(0.945098, 0.54902, 0, 1), Color(3.46541e-06, 0.768935, 0, 1), Color(0.666667, 0, 0.890196, 1)])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_gmfve")
