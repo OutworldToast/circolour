@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://ch1jfy1gpg0q6"]
+
+[node name="BaseShape" type="Node2D"]
