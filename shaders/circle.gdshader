@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform vec4 color : source_color = vec4(1, 1, 1, 1);
-uniform float radius : hint_range(0.0, 1.0, 0.1) = 0.46;
+uniform float radius : hint_range(0.0, 1.0, 0.01) = 0.45;
 uniform float edge : hint_range(0.001, 0,2) = 0.05;
 
 void fragment() {

@@ -67,6 +67,13 @@ func _process(delta: float) -> void:
 	velocity = velocity.normalized() * SPEED * delta
 	position += velocity
 
+	# clamp to visible screen area, with margin for size
+	var screen_size = get_viewport_rect().size
+
+	# the characters is 40x40
+	position.x = clamp(position.x, 20, screen_size.x - 20)
+	position.y = clamp(position.y, 20, screen_size.y - 20)
+
 
 func _on_area_entered(area: Area2D) -> void:
 

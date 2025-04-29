@@ -24,6 +24,7 @@ script = ExtResource("1_s6lek")
 stream = ExtResource("2_n7s5x")
 volume_db = -30.0
 autoplay = true
+parameters/looping = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(321, 181)
