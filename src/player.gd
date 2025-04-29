@@ -1,9 +1,9 @@
 extends Area2D
 class_name Player
 
-@export var SPEED: float = 200.0
+@export var SPEED: float = 300.0
 
-@onready var sprite_material: ShaderMaterial = $Sprite2D.material as ShaderMaterial
+@onready var sprite_material: ShaderMaterial = $Sprite2D.material
 
 var colors: Array[Color]:
 	set(value):
@@ -58,3 +58,12 @@ func _process(delta: float) -> void:
 
 	velocity = velocity.normalized() * SPEED * delta
 	position += velocity
+
+
+func _on_area_entered(area: Area2D) -> void:
+
+	if area is Line:
+		var line = area as Line
+
+		if line.current_color != current_color:
+			print("game over")

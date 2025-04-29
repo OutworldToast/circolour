@@ -14,7 +14,9 @@ class_name Game
 ]
 
 @onready var player: Player = $Player
+@onready var line: Line = $Line
 
 
 func _ready() -> void:
     player.colors = colors
+    line.current_color = colors[1]

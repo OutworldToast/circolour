@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ch1jfy1gpg0q6"]
+
+[ext_resource type="Script" uid="uid://bb8d7fvonec56" path="res://src/line/line.gd" id="1_3j02d"]
+[ext_resource type="Shader" uid="uid://brq0ho7dxmxkn" path="res://shaders/shape.gdshader" id="2_n0ls6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbvsa"]
+size = Vector2(20, 398)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wq78w"]
+shader = ExtResource("2_n0ls6")
+shader_parameter/color = Color(1, 1, 0.266667, 1)
+
+[node name="Line" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_3j02d")
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qbvsa")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_wq78w")
+polygon = PackedVector2Array(-10, -200, 10, -200, 10, 200, -10, 200)
+uv = PackedVector2Array(-10, -35, 10, -35, 10, 35, -10, 35)
