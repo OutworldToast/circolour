@@ -25,8 +25,9 @@ window/size/viewport_height=360
 folder_colors={
 "res://resources/": "red",
 "res://shaders/": "purple",
-"res://sound/": "green",
-"res://src/": "orange"
+"res://sound/": "teal",
+"res://src/": "orange",
+"res://src/UI/": "green"
 }
 
 [input]

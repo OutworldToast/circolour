@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://dw1delj4qvwby"]
+
+[ext_resource type="Script" uid="uid://83dumiocxc06" path="res://src/UI/hud_colour.gd" id="1_i70fi"]
+[ext_resource type="Shader" uid="uid://bew3081dmsys2" path="res://shaders/circle.gdshader" id="1_o4lk6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i70fi"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i70fi"]
+shader = ExtResource("1_o4lk6")
+shader_parameter/color = Color(1, 0.403922, 1, 1)
+shader_parameter/radius = 0.46
+shader_parameter/edge = 0.05
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7f6fw"]
+
+[node name="HUDColour" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -601.0
+offset_bottom = -320.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_i70fi")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i70fi")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_i70fi")
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("CanvasTexture_7f6fw")
+
+[node name="Label" type="Label" parent="TextureRect"]
+visible = false
+layout_mode = 2
+offset_top = 6.0
+offset_right = 40.0
+offset_bottom = 29.0
+size_flags_vertical = 0
+text = "Key"
+horizontal_alignment = 1
