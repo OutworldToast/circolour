@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyerbmhiyfilw"]
+
+[ext_resource type="Script" uid="uid://bwntevgmutj8" path="res://src/game/player/trail.gd" id="1_o4piu"]
+
+[sub_resource type="Curve" id="Curve_ktxgs"]
+_data = [Vector2(0, 0.039281), 0.0, 0.0, 0, 0, Vector2(0.99671, 0.939414), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Line2D" type="Line2D"]
+z_index = -1
+points = PackedVector2Array(-124, -36, -85, 27, -3, -1)
+width = 30.0
+width_curve = SubResource("Curve_ktxgs")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+script = ExtResource("1_o4piu")

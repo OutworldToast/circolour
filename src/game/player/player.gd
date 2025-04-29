@@ -4,6 +4,8 @@ class_name Player
 signal score_earned()
 signal game_over()
 
+signal colour_changed()
+
 @export var SPEED: float = 300.0
 
 @onready var sprite_material: ShaderMaterial = $Sprite2D.material
@@ -46,6 +48,9 @@ func _input(event: InputEvent) -> void:
 			# set the current color to the color at that index
 			# the setter for current color will change the color in the shader
 			current_color = colors[index]
+
+			## could also be done in the setter
+			colour_changed.emit()
 
 func _process(delta: float) -> void:
 

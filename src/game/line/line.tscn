@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ch1jfy1gpg0q6"]
 
-[ext_resource type="Script" uid="uid://bb8d7fvonec56" path="res://src/line/line.gd" id="1_3j02d"]
+[ext_resource type="Script" uid="uid://bb8d7fvonec56" path="res://src/game/line/line.gd" id="1_3j02d"]
 [ext_resource type="Shader" uid="uid://brq0ho7dxmxkn" path="res://shaders/shape.gdshader" id="2_n0ls6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qbvsa"]
