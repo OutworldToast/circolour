@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfndd87h3w6cn"]
+[gd_scene load_steps=10 format=3 uid="uid://dfndd87h3w6cn"]
 
 [ext_resource type="PackedScene" uid="uid://d4ktd6y1j6nex" path="res://src/player.tscn" id="1_qnjlk"]
 [ext_resource type="Script" uid="uid://dpg1rdmwb32jc" path="res://src/game/game.gd" id="1_s6lek"]
+[ext_resource type="Script" uid="uid://hb3b54m04cv7" path="res://src/game/camera_2d.gd" id="2_jhw8o"]
+[ext_resource type="AudioStream" uid="uid://dhqi7hj68i4ca" path="res://sound/Demonstar Music - Level 7 - Outer Space.mp3" id="2_n7s5x"]
 [ext_resource type="AudioStream" uid="uid://cgaaqkr8l08e8" path="res://sound/coin1.ogg" id="2_yarin"]
 [ext_resource type="AudioStream" uid="uid://btbxfdwj05kbf" path="res://sound/hurt1.ogg" id="3_jhw8o"]
 [ext_resource type="PackedScene" uid="uid://ch1jfy1gpg0q6" path="res://src/line/line.tscn" id="3_kgj8g"]
@@ -17,8 +19,18 @@ expand_margin_top = 2.0
 [node name="Game" type="Node2D"]
 script = ExtResource("1_s6lek")
 
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_n7s5x")
+volume_db = -30.0
+autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(321, 181)
+script = ExtResource("2_jhw8o")
+
 [node name="PointEarnedAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_yarin")
+volume_db = -9.0
 
 [node name="GameOverAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_jhw8o")

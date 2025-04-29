@@ -17,6 +17,8 @@ class_name Game
 @onready var line: Line = $Line
 @onready var grid_container: GridContainer = $CanvasLayer/HUD/PanelContainer/GridContainer
 
+@onready var camera: Camera = $Camera2D
+
 @onready var viewport_size: Vector2 = get_viewport().get_visible_rect().size
 
 const HUD_COLOUR_SCENE: PackedScene = preload("uid://dw1delj4qvwby")
@@ -66,6 +68,8 @@ func _on_line_finished_movement() -> void:
 
 
 func _on_player_score_earned() -> void:
+	camera.shake()
+
 	current_score += 1
 	$PointEarnedAudio.play()
 
