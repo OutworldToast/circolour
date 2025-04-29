@@ -22,11 +22,17 @@ class_name Game
 @onready var viewport_size: Vector2 = get_viewport().get_visible_rect().size
 
 const HUD_COLOUR_SCENE: PackedScene = preload("uid://dw1delj4qvwby")
+const TRAIL_SCENE: PackedScene = preload("uid://dyerbmhiyfilw")
+
 
 var current_score: int = 0:
 	set(value):
 		current_score = value
 		$CanvasLayer/HUD/ScoreLabel.text = str(current_score)
+
+## it might be better for the trail to be a child of the player?
+## the position gets weird if so
+@onready var current_trail: Trail = $Trail
 
 
 func create_hud_color(colour: Color, key_string: String) -> void:
@@ -37,10 +43,25 @@ func create_hud_color(colour: Color, key_string: String) -> void:
 	hud_colour.current_color = colour
 	hud_colour.key_string = key_string
 
+func update_trail() -> void:
+	var previous_trail: Trail = current_trail
+
+	current_trail = TRAIL_SCENE.instantiate()
+	current_trail.player = player
+
+	add_child(current_trail)
+
+	var tween = create_tween()
+	tween.tween_property(previous_trail, "modulate:a", 0.0, previous_trail.trail_duration)
+	await tween.finished
+
+	previous_trail.queue_free()
+
 
 func _ready() -> void:
 
 	player.colors = colors
+	current_trail.default_color = colors[0] if colors else Color(1, 1, 1)
 	line.current_color = colors[1]
 
 	line.finished_movement.connect(_on_line_finished_movement)
@@ -76,3 +97,8 @@ func _on_player_score_earned() -> void:
 func _on_player_game_over() -> void:
 	current_score = 0
 	$GameOverAudio.play()
+
+
+func _on_player_colour_changed() -> void:
+	# play some audio?
+	update_trail()
