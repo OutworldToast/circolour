@@ -29,6 +29,18 @@ var keys: Array[Key] = [
 	KEY_KP_3,
 ]
 
+var alt_keys: Array[StringName] = [
+	"top_left",
+	"top",
+	"top_right",
+	"left",
+	"middle",
+	"right",
+	"bottom_left",
+	"bottom",
+	"bottom_right",
+]
+
 var current_color: Color:
 	set(value):
 		current_color = value
@@ -41,6 +53,13 @@ func _input(event: InputEvent) -> void:
 
 		# get the index of the key pressed
 		var index: int = keys.find(event.keycode)
+
+		if index == -1:
+			# if the key is not found, check for alternative keys
+			for i in range(alt_keys.size()):
+				if event.is_action_pressed(alt_keys[i]):
+					index = i
+					break
 
 		# if there is an index and it is within the bounds of the colors array
 		if not index == -1 and index < colors.size():

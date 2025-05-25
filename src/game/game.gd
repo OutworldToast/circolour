@@ -87,7 +87,6 @@ func _on_line_finished_movement() -> void:
 
 	line.move(Vector2(target_x, line.position.y), 1.5)
 
-
 func _on_player_score_earned() -> void:
 	camera.shake()
 
