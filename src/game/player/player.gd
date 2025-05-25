@@ -17,19 +17,7 @@ var colors: Array[Color]:
 		if colors.size() > 0:
 			current_color = colors[0]
 
-var keys: Array[Key] = [
-	KEY_KP_7,
-	KEY_KP_8,
-	KEY_KP_9,
-	KEY_KP_4,
-	KEY_KP_5,
-	KEY_KP_6,
-	KEY_KP_1,
-	KEY_KP_2,
-	KEY_KP_3,
-]
-
-var alt_keys: Array[StringName] = [
+var keys: Array[StringName] = [
 	"top_left",
 	"top",
 	"top_right",
@@ -51,15 +39,13 @@ func _input(event: InputEvent) -> void:
 	# check if the event is a key press
 	if event is InputEventKey and event.is_pressed():
 
-		# get the index of the key pressed
-		var index: int = keys.find(event.keycode)
+		var index: int = -1
 
-		if index == -1:
-			# if the key is not found, check for alternative keys
-			for i in range(alt_keys.size()):
-				if event.is_action_pressed(alt_keys[i]):
-					index = i
-					break
+		# check if the key is in the keys array
+		for i in range(keys.size()):
+			if event.is_action_pressed(keys[i]):
+				index = i
+				break
 
 		# if there is an index and it is within the bounds of the colors array
 		if not index == -1 and index < colors.size():
