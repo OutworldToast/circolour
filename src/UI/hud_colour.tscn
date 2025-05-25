@@ -57,7 +57,6 @@ size_flags_vertical = 4
 texture = SubResource("CanvasTexture_7f6fw")
 
 [node name="Label" type="Label" parent="TextureRect"]
-visible = false
 layout_mode = 2
 offset_top = 6.0
 offset_right = 40.0

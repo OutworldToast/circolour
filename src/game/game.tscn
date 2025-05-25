@@ -101,15 +101,28 @@ layout_mode = 2
 [node name="HUDColour9" parent="CanvasLayer/HUD/PanelContainer/GridContainer" instance=ExtResource("4_l80un")]
 layout_mode = 2
 
-[node name="ScoreLabel" type="Label" parent="CanvasLayer/HUD"]
+[node name="Scores" type="Control" parent="CanvasLayer/HUD"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/HUD/Scores"]
 layout_mode = 0
-offset_left = 298.0
-offset_top = 19.0
-offset_right = 338.0
-offset_bottom = 42.0
+offset_left = 215.0
+offset_top = 20.0
+offset_right = 329.0
+offset_bottom = 83.0
 theme_override_font_sizes/font_size = 45
 text = "0"
-horizontal_alignment = 1
+horizontal_alignment = 2
+
+[node name="MultiplierLabel" type="Label" parent="CanvasLayer/HUD/Scores"]
+layout_mode = 0
+offset_left = 332.0
+offset_top = 50.0
+offset_right = 372.0
+offset_bottom = 73.0
+text = "x1.0"
 
 [connection signal="colour_changed" from="Player" to="." method="_on_player_colour_changed"]
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
