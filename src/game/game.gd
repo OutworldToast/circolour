@@ -27,6 +27,7 @@ signal score_earned
 
 @onready var multiplier_label: Label = $CanvasLayer/HUD/MultiplierLabel
 @onready var score_label: Label = $CanvasLayer/HUD/ScoreLabel
+@onready var start_label: Label = $CanvasLayer/HUD/StartLabel
 
 @onready var health_bar: HealthBar = $CanvasLayer/HUD/HealthBar
 
@@ -65,10 +66,6 @@ var scores: Array[int] = []
 
 func start() -> void:
 
-	ongoing = true
-
-	$Music.play()
-
 	player.health = 3
 	health_bar.reset()
 
@@ -84,8 +81,26 @@ func start() -> void:
 	current_trail.clear()
 	current_trail.drawing = true
 
+	await start_signal()
+
+	ongoing = true
+
 	line.move(Vector2(viewport_size.x, line.position.y), calculate_line_delay())
 
+func start_signal() -> void:
+
+	if not $Music.playing:
+		$Music.play()
+
+	start_label.show()
+
+	for i in range(3, -1, -1):
+		start_label.text = str(i) if i > 0 else "GO!"
+
+		if get_tree():
+			await get_tree().create_timer(0.4).timeout
+
+	start_label.hide()
 
 func create_hud_color(colour: Color, key_string: String = "") -> void:
 
@@ -136,8 +151,6 @@ func _ready() -> void:
 		# var key_string: String = input_event.as_text()
 
 		create_hud_color(colour)
-
-	start()
 
 
 func _on_line_finished_movement() -> void:

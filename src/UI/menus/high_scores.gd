@@ -31,15 +31,18 @@ func set_labels(scores: Array[int], colours: Array[Color] = []) -> void:
 	var sorted_scores: Array[int] = scores.duplicate()
 	sorted_scores.sort()
 
+	# duplicate the colours array to avoid modifying the original
+	var possible_colours: Array[Color] = colours.duplicate()
+
 	# set the labels in reverse order
 	for i in range(labels.size()):
 		if i < sorted_scores.size():
 
 			var colour: Color
 
-			if colours:
-				colour = colours.pick_random()
-				colours.erase(colour)
+			if possible_colours:
+				colour = possible_colours.pick_random()
+				possible_colours.erase(colour)
 			else:
 				colour = Color(1, 1, 1)
 

@@ -27,7 +27,6 @@ script = ExtResource("1_s6lek")
 process_mode = 3
 stream = ExtResource("2_n7s5x")
 volume_db = -30.0
-autoplay = true
 parameters/looping = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -130,6 +129,16 @@ offset_right = 372.0
 offset_bottom = 73.0
 text = "x1.0"
 script = ExtResource("10_clwl7")
+
+[node name="StartLabel" type="Label" parent="CanvasLayer/HUD"]
+layout_mode = 0
+offset_left = 301.0
+offset_top = 92.0
+offset_right = 356.0
+offset_bottom = 147.0
+theme_override_font_sizes/font_size = 40
+text = "3"
+horizontal_alignment = 1
 
 [node name="HealthBar" parent="CanvasLayer/HUD" node_paths=PackedStringArray("player") instance=ExtResource("11_7r0dx")]
 layout_mode = 1

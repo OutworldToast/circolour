@@ -45,8 +45,8 @@ func return_to_main_menu() -> void:
 	main_menu.visible = true
 	volume_slider.visible = true
 
-	if mini_game.is_inside_tree():
-		remove_child(mini_game)
+	if not mini_game.is_inside_tree():
+		add_child(mini_game)
 
 func load_data() -> void:
 	score_data = ScoreData.load_or_create()
@@ -91,11 +91,14 @@ func _on_tutorial_menu_return_button_pressed() -> void:
 
 func _on_pause_menu_restart_pressed() -> void:
 	handle_pause()
+	main_game.ongoing = false
 	main_game.start()
 
 
 func _on_pause_menu_resume_pressed() -> void:
-	handle_pause()
+	pause_menu.visible = false
+	await main_game.start_signal()
+	get_tree().paused = false
 
 
 func _on_pause_menu_return_pressed() -> void:
