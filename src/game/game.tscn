@@ -23,6 +23,9 @@ expand_margin_top = 2.0
 [node name="Game" type="Node2D"]
 script = ExtResource("1_s6lek")
 
+[node name="ParticlePositionMarker" type="Marker2D" parent="."]
+position = Vector2(316, 54)
+
 [node name="Music" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("2_n7s5x")
@@ -32,7 +35,8 @@ parameters/looping = true
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(321, 181)
 script = ExtResource("2_jhw8o")
-random_strength = 30.0
+random_strength = 35.0
+shake_fade = 3.0
 
 [node name="PointEarnedAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_yarin")
@@ -55,6 +59,26 @@ position = Vector2(328, 174)
 
 [node name="Line" parent="." instance=ExtResource("3_kgj8g")]
 position = Vector2(11, 173)
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 215.0
+offset_top = 20.0
+offset_right = 329.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 45
+text = "0"
+horizontal_alignment = 2
+
+[node name="HealthBar" parent="." node_paths=PackedStringArray("player") instance=ExtResource("11_7r0dx")]
+player = NodePath("../Player")
+
+[node name="MultiplierLabel" type="Label" parent="."]
+offset_left = 332.0
+offset_top = 50.0
+offset_right = 372.0
+offset_bottom = 73.0
+text = "x1.0"
+script = ExtResource("10_clwl7")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -111,26 +135,8 @@ layout_mode = 2
 [node name="HUDColour9" parent="CanvasLayer/HUD/PanelContainer/GridContainer" instance=ExtResource("4_l80un")]
 layout_mode = 2
 
-[node name="ScoreLabel" type="Label" parent="CanvasLayer/HUD"]
-layout_mode = 0
-offset_left = 215.0
-offset_top = 20.0
-offset_right = 329.0
-offset_bottom = 83.0
-theme_override_font_sizes/font_size = 45
-text = "0"
-horizontal_alignment = 2
-
-[node name="MultiplierLabel" type="Label" parent="CanvasLayer/HUD"]
-layout_mode = 0
-offset_left = 332.0
-offset_top = 50.0
-offset_right = 372.0
-offset_bottom = 73.0
-text = "x1.0"
-script = ExtResource("10_clwl7")
-
 [node name="StartLabel" type="Label" parent="CanvasLayer/HUD"]
+visible = false
 layout_mode = 0
 offset_left = 301.0
 offset_top = 92.0
@@ -139,10 +145,6 @@ offset_bottom = 147.0
 theme_override_font_sizes/font_size = 40
 text = "3"
 horizontal_alignment = 1
-
-[node name="HealthBar" parent="CanvasLayer/HUD" node_paths=PackedStringArray("player") instance=ExtResource("11_7r0dx")]
-layout_mode = 1
-player = NodePath("../../../Player")
 
 [connection signal="colour_changed" from="Player" to="." method="_on_player_colour_changed"]
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]

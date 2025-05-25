@@ -11,8 +11,8 @@ var rng = RandomNumberGenerator.new()
 var shake_strength: float = 0.0
 
 
-func shake() -> void:
-    shake_strength = random_strength
+func shake(streak: int) -> void:
+    shake_strength = clamp(2 * streak, 0, random_strength)
 
 func random_offset() -> Vector2:
     return Vector2(

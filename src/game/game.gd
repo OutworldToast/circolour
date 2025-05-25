@@ -25,20 +25,45 @@ signal score_earned
 
 @onready var viewport_size: Vector2 = get_viewport().get_visible_rect().size
 
-@onready var multiplier_label: Label = $CanvasLayer/HUD/MultiplierLabel
-@onready var score_label: Label = $CanvasLayer/HUD/ScoreLabel
+@onready var multiplier_label: Label = $MultiplierLabel
+@onready var score_label: Label = $ScoreLabel
 @onready var start_label: Label = $CanvasLayer/HUD/StartLabel
 
-@onready var health_bar: HealthBar = $CanvasLayer/HUD/HealthBar
+@onready var health_bar: HealthBar = $HealthBar
 
 @onready var line_start_position: Vector2 = line.position
+@onready var particle_position: Vector2 = $ParticlePositionMarker.position
 
 const HUD_COLOUR_SCENE: PackedScene = preload("uid://dw1delj4qvwby")
+const PARTICLE_SCENE: PackedScene = preload("uid://tms5sv0qyi4t")
 
 var current_score: float = 0:
 	set(value):
 		current_score = value
 		score_label.text = str(int(current_score))
+
+		if current_score:
+			# create a particle effect at the score label position
+			var particles: CPUParticles2D = PARTICLE_SCENE.instantiate()
+
+			add_child(particles)
+
+			var pos: Vector2 = particle_position
+			var x_offset: float = 15
+
+			# keep it aligned if the score gets bigger
+			if current_score > 10:
+				pos.x -= x_offset
+
+			if current_score > 100:
+				pos.x -= x_offset
+
+			if current_score > 1000:
+				pos.x -= x_offset
+
+
+			particles.position = pos
+			particles.emitting = true
 
 var current_multiplier: float = 1.0:
 	set(value):
@@ -166,10 +191,9 @@ func _on_line_finished_movement() -> void:
 	line.move(Vector2(target_x, line.position.y), calculate_line_delay())
 
 func _on_player_score_earned() -> void:
-	camera.shake()
-
 	# updating the streak also updates the score and multiplier in the setter
 	current_streak += 1
+	camera.shake(current_streak)
 	$PointEarnedAudio.play()
 
 
