@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://qapspnipwojt"]
+
+[ext_resource type="Texture2D" uid="uid://b61x3r4wvrk1y" path="res://assets/shield.png" id="1_ev003"]
+
+[node name="Health" type="TextureRect"]
+offset_right = 128.0
+offset_bottom = 128.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ev003")

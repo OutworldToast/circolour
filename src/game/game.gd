@@ -142,11 +142,11 @@ func _on_player_score_earned() -> void:
 	$PointEarnedAudio.play()
 
 
-func _on_player_game_over() -> void:
+func _on_player_hit() -> void:
 
 	# also updates multiplier in the setter
 	current_streak = 0
-	$GameOverAudio.play()
+	$HitAudio.play()
 
 
 
@@ -158,3 +158,11 @@ func _on_player_colour_changed() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
+
+
+func _on_player_game_over() -> void:
+	current_streak = 0
+	current_score = 0
+
+	$GameOverAudio.play()
+	$Music.stop()

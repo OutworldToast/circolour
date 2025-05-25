@@ -2,6 +2,7 @@ extends Area2D
 class_name Player
 
 signal score_earned()
+signal hit()
 signal game_over()
 
 signal colour_changed()
@@ -33,6 +34,13 @@ var current_color: Color:
 	set(value):
 		current_color = value
 		sprite_material.set_shader_parameter("color", value)
+
+var health: int = 3:
+	set(value):
+		health = value
+
+		if health <= 0:
+			game_over.emit()
 
 func _input(event: InputEvent) -> void:
 
@@ -88,4 +96,5 @@ func _on_area_entered(area: Area2D) -> void:
 		if line.current_color == current_color:
 			score_earned.emit()
 		else:
-			game_over.emit()
+			health -= 1
+			hit.emit()

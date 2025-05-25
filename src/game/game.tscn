@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfndd87h3w6cn"]
+[gd_scene load_steps=14 format=3 uid="uid://dfndd87h3w6cn"]
 
 [ext_resource type="PackedScene" uid="uid://d4ktd6y1j6nex" path="res://src/game/player/player.tscn" id="1_qnjlk"]
 [ext_resource type="Script" uid="uid://dpg1rdmwb32jc" path="res://src/game/game.gd" id="1_s6lek"]
@@ -8,8 +8,10 @@
 [ext_resource type="AudioStream" uid="uid://btbxfdwj05kbf" path="res://sound/hurt1.ogg" id="3_jhw8o"]
 [ext_resource type="PackedScene" uid="uid://ch1jfy1gpg0q6" path="res://src/game/line/line.tscn" id="3_kgj8g"]
 [ext_resource type="PackedScene" uid="uid://dw1delj4qvwby" path="res://src/UI/hud_colour.tscn" id="4_l80un"]
+[ext_resource type="AudioStream" uid="uid://dj71wd3ec0tt8" path="res://sound/gameover2.ogg" id="6_htx8b"]
 [ext_resource type="PackedScene" uid="uid://dyerbmhiyfilw" path="res://src/game/player/trail.tscn" id="9_6kr85"]
 [ext_resource type="Script" uid="uid://bp4qjgmjm1h18" path="res://src/game/shake_label.gd" id="10_clwl7"]
+[ext_resource type="PackedScene" uid="uid://cqhrktsxm81ld" path="res://src/UI/health_bar.tscn" id="11_7r0dx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l80un"]
 draw_center = false
@@ -30,13 +32,18 @@ parameters/looping = true
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(321, 181)
 script = ExtResource("2_jhw8o")
+random_strength = 30.0
 
 [node name="PointEarnedAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_yarin")
 volume_db = -15.0
 
-[node name="GameOverAudio" type="AudioStreamPlayer" parent="."]
+[node name="HitAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_jhw8o")
+volume_db = -9.0
+
+[node name="GameOverAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_htx8b")
 volume_db = -9.0
 
 [node name="Trail" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_6kr85")]
@@ -121,6 +128,10 @@ offset_bottom = 73.0
 text = "x1.0"
 script = ExtResource("10_clwl7")
 
+[node name="HealthBar" parent="CanvasLayer/HUD" node_paths=PackedStringArray("player") instance=ExtResource("11_7r0dx")]
+player = NodePath("../../../Player")
+
 [connection signal="colour_changed" from="Player" to="." method="_on_player_colour_changed"]
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="score_earned" from="Player" to="." method="_on_player_score_earned"]
