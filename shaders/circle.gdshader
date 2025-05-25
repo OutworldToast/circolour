@@ -5,10 +5,10 @@ uniform float radius : hint_range(0.0, 1.0, 0.01) = 0.45;
 uniform float edge : hint_range(0.001, 0,2) = 0.05;
 
 void fragment() {
-	
+
 	float dist = distance(UV, vec2(0.5));
-	
+
 	float alpha = 1.0 - smoothstep(radius, radius + edge, dist);
-	
+
 	COLOR = vec4(color.rgb, color.a * alpha);
 }

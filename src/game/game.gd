@@ -102,3 +102,8 @@ func _on_player_game_over() -> void:
 func _on_player_colour_changed() -> void:
 	# play some audio?
 	update_trail()
+
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().quit()

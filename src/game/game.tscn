@@ -32,10 +32,11 @@ script = ExtResource("2_jhw8o")
 
 [node name="PointEarnedAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_yarin")
-volume_db = -9.0
+volume_db = -15.0
 
 [node name="GameOverAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_jhw8o")
+volume_db = -9.0
 
 [node name="Trail" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_6kr85")]
 width = 40.0
