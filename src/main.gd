@@ -13,7 +13,13 @@ class_name Main
 
 var fullscreen: bool = false
 
+var score_data: ScoreData
+
 func _ready() -> void:
+
+	# load score data if there was any
+	load_data()
+
 	toggle_main_game(false)
 
 #region Helpers
@@ -41,6 +47,14 @@ func return_to_main_menu() -> void:
 
 	if mini_game.is_inside_tree():
 		remove_child(mini_game)
+
+func load_data() -> void:
+	score_data = ScoreData.load_or_create()
+	main_game.scores = score_data.scores
+
+func save_data() -> void:
+	score_data.scores = main_game.scores
+	score_data.save()
 
 #endregion Helpers
 
@@ -90,6 +104,9 @@ func _on_pause_menu_return_pressed() -> void:
 	return_to_main_menu()
 
 #endregion ButtonSignals
+
+func _on_game_score_earned() -> void:
+	save_data()
 
 
 func _process(_delta: float) -> void:

@@ -8,6 +8,7 @@ signal try_again_pressed()
 
 @onready var labels: Array[RichTextLabel] = get_labels()
 @onready var try_again_button: Button = $TryAgainButton
+@onready var exit_button: Button = $ExitButton
 
 func _ready() -> void:
 	disappear()
@@ -74,6 +75,7 @@ func appear() -> void:
 	await get_tree().create_timer(score_appear_delay).timeout
 
 	try_again_button.show()
+	exit_button.show()
 
 func disappear() -> void:
 	hide()
@@ -82,8 +84,12 @@ func disappear() -> void:
 		label.hide()
 
 	try_again_button.hide()
+	exit_button.hide()
 
 
 func _on_try_again_button_pressed() -> void:
 	# relay the signal
 	try_again_pressed.emit()
+
+func _on_exit_button_pressed() -> void:
+	get_tree().quit()

@@ -1,6 +1,8 @@
 extends MiniGame
 class_name Game
 
+signal score_earned
+
 @export var high_scores: HighScores:
 	set(value):
 
@@ -172,6 +174,8 @@ func _on_player_game_over() -> void:
 	$Music.stop()
 
 	scores.append(int(current_score))
+
+	score_earned.emit()
 
 	high_scores.set_labels(scores, colors)
 	high_scores.appear()
