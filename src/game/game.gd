@@ -24,6 +24,9 @@ class_name Game
 
 @onready var viewport_size: Vector2 = get_viewport().get_visible_rect().size
 
+@onready var multiplier_label: Label = $CanvasLayer/HUD/MultiplierLabel
+
+
 const HUD_COLOUR_SCENE: PackedScene = preload("uid://dw1delj4qvwby")
 const TRAIL_SCENE: PackedScene = preload("uid://dyerbmhiyfilw")
 
@@ -31,12 +34,14 @@ const TRAIL_SCENE: PackedScene = preload("uid://dyerbmhiyfilw")
 var current_score: float = 0:
 	set(value):
 		current_score = value
-		$CanvasLayer/HUD/Scores/ScoreLabel.text = str(int(current_score))
+		$CanvasLayer/HUD/ScoreLabel.text = str(int(current_score))
 
 var current_multiplier: float = 1.0:
 	set(value):
 		current_multiplier = value
-		$CanvasLayer/HUD/Scores/MultiplierLabel.text = "x" + str(snappedf(current_multiplier, 0.1))
+		multiplier_label.text = "x" + str(snappedf(current_multiplier, 0.1))
+		multiplier_label.shake(current_multiplier)
+
 
 var current_streak: int = 0:
 	set(value):
