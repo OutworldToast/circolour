@@ -11,19 +11,29 @@ class_name Trail
 
 const MAX_POINTS: int = 150
 
+var drawing: bool = true
+
 func _ready() -> void:
 
-    if player:
-        default_color = player.current_color
+	if player:
+		default_color = player.current_color
+		player.game_over.connect(_on_player_game_over)
+
+func clear() -> void:
+	curve.clear_points()
+	points = []
+
+func _on_player_game_over() -> void:
+	drawing = false
 
 func _process(_delta: float) -> void:
 
-    if not player:
-        return
+	if not player or not drawing:
+		return
 
-    curve.add_point(player.global_position)
+	curve.add_point(player.global_position)
 
-    if curve.get_baked_points().size() > MAX_POINTS:
-        curve.remove_point(0)
+	if curve.get_baked_points().size() > MAX_POINTS:
+		curve.remove_point(0)
 
-    points = curve.get_baked_points()
+	points = curve.get_baked_points()

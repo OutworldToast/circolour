@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dkuildxa0314h" path="res://src/UI/high_scores.gd" id="1_udlim"]
 
 [node name="HighScores" type="VBoxContainer"]
+process_mode = 3
 offset_right = 173.0
 offset_bottom = 82.0
 script = ExtResource("1_udlim")
@@ -57,6 +58,9 @@ text = "[wave][center]0[/center][/wave]"
 fit_content = true
 
 [node name="TryAgainButton" type="Button" parent="."]
+process_mode = 3
 layout_mode = 2
 text = "Try again?"
 flat = true
+
+[connection signal="pressed" from="TryAgainButton" to="." method="_on_try_again_button_pressed"]

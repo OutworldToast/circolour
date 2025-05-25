@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://diurqsgogaq0u"]
+
+[ext_resource type="Script" uid="uid://cstkxv58q51ed" path="res://src/UI/volume_slider.gd" id="1_0fbvu"]
+[ext_resource type="Texture2D" uid="uid://bk1xdwcxak8hc" path="res://assets/musicOn.png" id="2_5oojk"]
+[ext_resource type="Texture2D" uid="uid://c7xme6l0c2ayi" path="res://assets/musicOff.png" id="3_5oojk"]
+
+[node name="VolumeSlider" type="VBoxContainer"]
+offset_right = 50.0
+offset_bottom = 201.0
+script = ExtResource("1_0fbvu")
+on_icon = ExtResource("2_5oojk")
+off_icon = ExtResource("3_5oojk")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_5oojk")
+
+[node name="VSlider" type="VSlider" parent="."]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
+value = 50.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "50"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="gui_input" from="TextureRect" to="." method="_on_texture_rect_gui_input"]
+[connection signal="mouse_entered" from="VSlider" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="VSlider" to="." method="_on_mouse_exited"]
+[connection signal="value_changed" from="VSlider" to="." method="_on_slider_value_changed"]

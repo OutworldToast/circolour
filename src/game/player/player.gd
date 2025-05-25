@@ -46,6 +46,9 @@ var dead: bool = false
 
 func _input(event: InputEvent) -> void:
 
+	if dead:
+		return
+
 	# check if the event is a key press
 	if event is InputEventKey and event.is_pressed():
 

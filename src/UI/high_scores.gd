@@ -1,6 +1,8 @@
 extends VBoxContainer
 class_name HighScores
 
+signal try_again_pressed()
+
 @export var score_appear_delay: float = 0.5
 
 
@@ -77,3 +79,8 @@ func disappear() -> void:
 		label.hide()
 
 	try_again_button.hide()
+
+
+func _on_try_again_button_pressed() -> void:
+	# relay the signal
+	try_again_pressed.emit()

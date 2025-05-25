@@ -1,6 +1,17 @@
 extends Node2D
 class_name Game
 
+@export var high_scores: HighScores:
+	set(value):
+
+		if high_scores:
+			high_scores.try_again_pressed.disconnect(_on_try_again_button_pressed)
+
+		high_scores = value
+
+		if high_scores:
+			high_scores.try_again_pressed.connect(_on_try_again_button_pressed)
+
 @export var colors: Array[Color] = [
 	Color(1, 0, 0),
 	Color(0, 1, 0),
@@ -32,8 +43,6 @@ class_name Game
 ## it might be better for the trail to be a child of the player?
 ## the position gets weird if so
 @onready var current_trail: Trail = $Trail
-
-@onready var high_scores: HighScores = $CanvasLayer/HUD/HighScores
 
 
 @onready var player_start_position: Vector2 = player.position
@@ -92,6 +101,9 @@ func start() -> void:
 
 	player.position = player_start_position
 	line.position = line_start_position
+
+	current_trail.clear()
+	current_trail.drawing = true
 
 	line.move(Vector2(viewport_size.x, line.position.y), calculate_line_delay())
 
@@ -161,6 +173,9 @@ func _ready() -> void:
 
 		create_hud_color(colour)
 
+	if get_parent():
+		await get_parent().ready
+
 	start()
 
 
@@ -195,12 +210,6 @@ func _on_player_hit() -> void:
 func _on_player_colour_changed() -> void:
 	# play some audio?
 	update_trail()
-
-
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().quit()
-
 
 func _on_player_game_over() -> void:
 
