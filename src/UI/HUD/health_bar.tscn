@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cqhrktsxm81ld"]
 
-[ext_resource type="PackedScene" uid="uid://qapspnipwojt" path="res://src/UI/health.tscn" id="1_tknut"]
-[ext_resource type="Script" uid="uid://bayubtyo0snap" path="res://src/UI/health_bar.gd" id="1_w0c2v"]
+[ext_resource type="PackedScene" uid="uid://qapspnipwojt" path="res://src/UI/HUD/health.tscn" id="1_tknut"]
+[ext_resource type="Script" uid="uid://bayubtyo0snap" path="res://src/UI/HUD/health_bar.gd" id="1_w0c2v"]
 
 [node name="HealthBar" type="HBoxContainer"]
 offset_right = 200.0

@@ -7,11 +7,11 @@
 [ext_resource type="AudioStream" uid="uid://cgaaqkr8l08e8" path="res://sound/coin1.ogg" id="2_yarin"]
 [ext_resource type="AudioStream" uid="uid://btbxfdwj05kbf" path="res://sound/hurt1.ogg" id="3_jhw8o"]
 [ext_resource type="PackedScene" uid="uid://ch1jfy1gpg0q6" path="res://src/game/line/line.tscn" id="3_kgj8g"]
-[ext_resource type="PackedScene" uid="uid://dw1delj4qvwby" path="res://src/UI/hud_colour.tscn" id="4_l80un"]
+[ext_resource type="PackedScene" uid="uid://dw1delj4qvwby" path="res://src/UI/HUD/hud_colour.tscn" id="4_l80un"]
 [ext_resource type="AudioStream" uid="uid://dj71wd3ec0tt8" path="res://sound/gameover2.ogg" id="6_htx8b"]
 [ext_resource type="PackedScene" uid="uid://dyerbmhiyfilw" path="res://src/game/player/trail.tscn" id="9_6kr85"]
 [ext_resource type="Script" uid="uid://bp4qjgmjm1h18" path="res://src/game/shake_label.gd" id="10_clwl7"]
-[ext_resource type="PackedScene" uid="uid://cqhrktsxm81ld" path="res://src/UI/health_bar.tscn" id="11_7r0dx"]
+[ext_resource type="PackedScene" uid="uid://cqhrktsxm81ld" path="res://src/UI/HUD/health_bar.tscn" id="11_7r0dx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l80un"]
 draw_center = false

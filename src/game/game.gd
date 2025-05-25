@@ -206,7 +206,6 @@ func _on_player_hit() -> void:
 	$HitAudio.play()
 
 
-
 func _on_player_colour_changed() -> void:
 	# play some audio?
 	update_trail()

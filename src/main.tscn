@@ -37,3 +37,13 @@ offset_left = 241.0
 offset_top = 79.0
 offset_right = 414.0
 offset_bottom = 256.0
+
+[node name="PausedLabel" type="Label" parent="CanvasLayer/UI"]
+visible = false
+layout_mode = 0
+offset_left = 253.0
+offset_top = 92.0
+offset_right = 407.0
+offset_bottom = 147.0
+theme_override_font_sizes/font_size = 40
+text = "PAUSED"

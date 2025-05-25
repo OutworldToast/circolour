@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dw1delj4qvwby"]
 
-[ext_resource type="Script" uid="uid://83dumiocxc06" path="res://src/UI/hud_colour.gd" id="1_i70fi"]
+[ext_resource type="Script" uid="uid://83dumiocxc06" path="res://src/UI/HUD/hud_colour.gd" id="1_i70fi"]
 [ext_resource type="Shader" uid="uid://bew3081dmsys2" path="res://shaders/circle.gdshader" id="1_o4lk6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i70fi"]

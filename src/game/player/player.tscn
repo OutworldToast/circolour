@@ -5,7 +5,9 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gmfve"]
 shader = ExtResource("1_lowyb")
+shader_parameter/previous_color = Color(1, 1, 1, 1)
 shader_parameter/color = Color(1, 0.65098, 0.372549, 1)
+shader_parameter/blend_strength = 0.0
 shader_parameter/radius = 0.48
 shader_parameter/edge = 0.02
 
