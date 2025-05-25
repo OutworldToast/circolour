@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dfndd87h3w6cn"]
+[gd_scene load_steps=15 format=3 uid="uid://dfndd87h3w6cn"]
 
 [ext_resource type="PackedScene" uid="uid://d4ktd6y1j6nex" path="res://src/game/player/player.tscn" id="1_qnjlk"]
 [ext_resource type="Script" uid="uid://dpg1rdmwb32jc" path="res://src/game/game.gd" id="1_s6lek"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dyerbmhiyfilw" path="res://src/game/player/trail.tscn" id="9_6kr85"]
 [ext_resource type="Script" uid="uid://bp4qjgmjm1h18" path="res://src/game/shake_label.gd" id="10_clwl7"]
 [ext_resource type="PackedScene" uid="uid://cqhrktsxm81ld" path="res://src/UI/health_bar.tscn" id="11_7r0dx"]
+[ext_resource type="PackedScene" uid="uid://ol3576ryuj5m" path="res://src/UI/high_scores.tscn" id="13_ueio8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l80un"]
 draw_center = false
@@ -24,6 +25,7 @@ expand_margin_top = 2.0
 script = ExtResource("1_s6lek")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("2_n7s5x")
 volume_db = -30.0
 autoplay = true
@@ -54,7 +56,7 @@ player = NodePath("../Player")
 position = Vector2(328, 174)
 
 [node name="Line" parent="." instance=ExtResource("3_kgj8g")]
-position = Vector2(201, 179)
+position = Vector2(11, 173)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -129,9 +131,21 @@ text = "x1.0"
 script = ExtResource("10_clwl7")
 
 [node name="HealthBar" parent="CanvasLayer/HUD" node_paths=PackedStringArray("player") instance=ExtResource("11_7r0dx")]
+layout_mode = 0
 player = NodePath("../../../Player")
+
+[node name="HighScores" parent="CanvasLayer/HUD" instance=ExtResource("13_ueio8")]
+visible = false
+layout_mode = 0
+offset_left = 241.0
+offset_top = 79.0
+offset_right = 414.0
+offset_bottom = 256.0
 
 [connection signal="colour_changed" from="Player" to="." method="_on_player_colour_changed"]
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="score_earned" from="Player" to="." method="_on_player_score_earned"]
+[connection signal="pressed" from="CanvasLayer/HUD/HighScores/TryAgainButton" to="." method="_on_try_again_button_pressed"]
+
+[editable path="CanvasLayer/HUD/HighScores"]

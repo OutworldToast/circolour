@@ -25,6 +25,19 @@ class_name Game
 @onready var viewport_size: Vector2 = get_viewport().get_visible_rect().size
 
 @onready var multiplier_label: Label = $CanvasLayer/HUD/MultiplierLabel
+@onready var score_label: Label = $CanvasLayer/HUD/ScoreLabel
+
+@onready var health_bar: HealthBar = $CanvasLayer/HUD/HealthBar
+
+## it might be better for the trail to be a child of the player?
+## the position gets weird if so
+@onready var current_trail: Trail = $Trail
+
+@onready var high_scores: HighScores = $CanvasLayer/HUD/HighScores
+
+
+@onready var player_start_position: Vector2 = player.position
+@onready var line_start_position: Vector2 = line.position
 
 
 const HUD_COLOUR_SCENE: PackedScene = preload("uid://dw1delj4qvwby")
@@ -34,7 +47,7 @@ const TRAIL_SCENE: PackedScene = preload("uid://dyerbmhiyfilw")
 var current_score: float = 0:
 	set(value):
 		current_score = value
-		$CanvasLayer/HUD/ScoreLabel.text = str(int(current_score))
+		score_label.text = str(int(current_score))
 
 var current_multiplier: float = 1.0:
 	set(value):
@@ -52,9 +65,36 @@ var current_streak: int = 0:
 		current_streak = value
 		update_multiplier()
 
-## it might be better for the trail to be a child of the player?
-## the position gets weird if so
-@onready var current_trail: Trail = $Trail
+var ongoing: bool = false:
+	set(value):
+		ongoing = value
+		line.toggle_pause(not value)
+		player.dead = not value
+
+var scores: Array[int] = []
+
+func start() -> void:
+
+	ongoing = true
+
+	$Music.play()
+
+	player.health = 3
+	health_bar.reset()
+
+	current_score = 0
+	current_streak = 0
+
+	high_scores.disappear()
+
+	multiplier_label.show()
+	score_label.show()
+
+	player.position = player_start_position
+	line.position = line_start_position
+
+	line.move(Vector2(viewport_size.x, line.position.y), calculate_line_delay())
+
 
 
 func create_hud_color(colour: Color, key_string: String = "") -> void:
@@ -105,7 +145,6 @@ func _ready() -> void:
 	line.current_color = colors[1]
 
 	line.finished_movement.connect(_on_line_finished_movement)
-	line.move(Vector2(viewport_size.x, line.position.y), calculate_line_delay())
 
 	# clean up the grid container used for display in the editor
 	for child in grid_container.get_children():
@@ -121,6 +160,9 @@ func _ready() -> void:
 		# var key_string: String = input_event.as_text()
 
 		create_hud_color(colour)
+
+	start()
+
 
 func _on_line_finished_movement() -> void:
 
@@ -161,8 +203,20 @@ func _process(_delta: float) -> void:
 
 
 func _on_player_game_over() -> void:
-	current_streak = 0
-	current_score = 0
+
+	ongoing = false
 
 	$GameOverAudio.play()
 	$Music.stop()
+
+	scores.append(int(current_score))
+
+	high_scores.set_labels(scores, colors)
+	high_scores.appear()
+
+	score_label.hide()
+	multiplier_label.hide()
+
+
+func _on_try_again_button_pressed() -> void:
+	start()

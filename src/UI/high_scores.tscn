@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=3 uid="uid://ol3576ryuj5m"]
+
+[ext_resource type="Script" uid="uid://dkuildxa0314h" path="res://src/UI/high_scores.gd" id="1_udlim"]
+
+[node name="HighScores" type="VBoxContainer"]
+offset_right = 173.0
+offset_bottom = 82.0
+script = ExtResource("1_udlim")
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[rainbow speed=0.5 freq=0.8]High Scores[/rainbow]"
+fit_content = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 9.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[wave][center]0[/center][/wave]"
+fit_content = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[wave][center]0[/center][/wave]"
+fit_content = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[wave][center]0[/center][/wave]"
+fit_content = true
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[wave][center]0[/center][/wave]"
+fit_content = true
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[wave][center]0[/center][/wave]"
+fit_content = true
+
+[node name="TryAgainButton" type="Button" parent="."]
+layout_mode = 2
+text = "Try again?"
+flat = true

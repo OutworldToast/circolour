@@ -37,10 +37,12 @@ var current_color: Color:
 
 var health: int = 3:
 	set(value):
-		health = value
+		health = clamp(value, 0, 3)
 
 		if health <= 0:
 			game_over.emit()
+
+var dead: bool = false
 
 func _input(event: InputEvent) -> void:
 
@@ -66,6 +68,9 @@ func _input(event: InputEvent) -> void:
 			colour_changed.emit()
 
 func _process(delta: float) -> void:
+
+	if dead:
+		return
 
 	var velocity: Vector2 = Vector2.ZERO
 

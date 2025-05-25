@@ -10,12 +10,23 @@ var current_color: Color:
         current_color = value
         sprite_material.set_shader_parameter("color", value)
 
+var move_tween: Tween
+
 func move(goal_position: Vector2, delay: float = 1.0) -> void:
 
-    var tween: Tween = create_tween()
+    if move_tween:
+        move_tween.kill()
+    
+    move_tween = create_tween()
 
-    tween.tween_property(self, "position", goal_position, delay
+    move_tween.tween_property(self, "position", goal_position, delay
         ).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
-    tween.finished.connect(finished_movement.emit)
-    
+    move_tween.finished.connect(finished_movement.emit)
+
+func toggle_pause(new_value: bool) -> void:
+    if move_tween:
+        if new_value:
+            move_tween.pause()
+        else:
+            move_tween.play()
