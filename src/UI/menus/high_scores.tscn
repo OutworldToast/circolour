@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ol3576ryuj5m"]
 
-[ext_resource type="Script" uid="uid://dkuildxa0314h" path="res://src/UI/high_scores.gd" id="1_udlim"]
+[ext_resource type="Script" uid="uid://dkuildxa0314h" path="res://src/UI/menus/high_scores.gd" id="1_udlim"]
 
 [node name="HighScores" type="VBoxContainer"]
 process_mode = 3
@@ -60,6 +60,7 @@ fit_content = true
 [node name="TryAgainButton" type="Button" parent="."]
 process_mode = 3
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "Try again?"
 flat = true
 

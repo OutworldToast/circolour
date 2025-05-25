@@ -1,0 +1,200 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2ql1yoh7nl18"]
+
+[ext_resource type="LabelSettings" uid="uid://cgy5aflgcp2nj" path="res://src/UI/menus/small_label_settings.tres" id="1_bcqbl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l5eth"]
+
+[node name="TutorialMenu" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_l5eth")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+theme_override_constants/separation = 10
+
+[node name="GoalLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.160784, 1, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Goal"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 8.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+text = "Change into the same colour as the line to avoid getting hit"
+label_settings = ExtResource("1_bcqbl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+text = "Get hit three time and you're out!"
+label_settings = ExtResource("1_bcqbl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label4" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+text = "The longer you go without getting hit, the higher your multiplier"
+label_settings = ExtResource("1_bcqbl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label5" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+text = "The higher your multiplier, the more points you score
+But beware! The line will also move faster"
+label_settings = ExtResource("1_bcqbl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Get as many points as possible!"
+horizontal_alignment = 1
+
+[node name="Margin3" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+theme_override_styles/panel = SubResource("StyleBoxEmpty_l5eth")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+theme_override_constants/separation = 10
+
+[node name="ControlsLabel" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.983336, 0.479055, 7.70092e-07, 1)
+theme_override_font_sizes/font_size = 20
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label4" type="Label" parent="VBoxContainer2/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+text = "Use WASD to move"
+label_settings = ExtResource("1_bcqbl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label7" type="Label" parent="VBoxContainer2/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+text = "Use the numpad to change colour
+(the colours will show in the bottom right!)"
+label_settings = ExtResource("1_bcqbl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label5" type="Label" parent="VBoxContainer2/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+text = "Press P or Escape to pause"
+label_settings = ExtResource("1_bcqbl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label6" type="Label" parent="VBoxContainer2/HBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+text = "F11 to go fullscreen"
+label_settings = ExtResource("1_bcqbl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label8" type="Label" parent="VBoxContainer2/HBoxContainer2/VBoxContainer2"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+text = "While a numpad is recommended, you can also change colour by using
+I O P
+L : '
+, . /"
+label_settings = ExtResource("1_bcqbl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label9" type="Label" parent="VBoxContainer2/HBoxContainer2/VBoxContainer2"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+text = "(I promise these hotkeys make sense)"
+label_settings = ExtResource("1_bcqbl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Margin2" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_l5eth")
+
+[node name="Button" type="Button" parent="Margin2"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+text = "Press to Return"
+flat = true

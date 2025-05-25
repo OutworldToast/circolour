@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://brgk76wpdoeqd"]
+
+[ext_resource type="Script" uid="uid://dx5da2u2xrcew" path="res://src/game/mini_game.gd" id="1_tenuh"]
+[ext_resource type="PackedScene" uid="uid://d4ktd6y1j6nex" path="res://src/game/player/player.tscn" id="2_c4ku7"]
+[ext_resource type="PackedScene" uid="uid://dyerbmhiyfilw" path="res://src/game/player/trail.tscn" id="3_1nxxr"]
+
+[node name="MiniGame" type="Node2D"]
+script = ExtResource("1_tenuh")
+
+[node name="Player" parent="." instance=ExtResource("2_c4ku7")]
+position = Vector2(323, 289)
+
+[node name="Trail" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_1nxxr")]
+width = 40.0
+player = NodePath("../Player")
+
+[connection signal="colour_changed" from="Player" to="." method="_on_player_colour_changed"]

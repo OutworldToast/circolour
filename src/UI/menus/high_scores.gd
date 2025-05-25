@@ -9,6 +9,9 @@ signal try_again_pressed()
 @onready var labels: Array[RichTextLabel] = get_labels()
 @onready var try_again_button: Button = $TryAgainButton
 
+func _ready() -> void:
+	disappear()
+
 func get_labels() -> Array[RichTextLabel]:
 	var result: Array[RichTextLabel] = []
 

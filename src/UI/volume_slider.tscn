@@ -13,12 +13,14 @@ off_icon = ExtResource("3_5oojk")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 texture = ExtResource("2_5oojk")
 
 [node name="VSlider" type="VSlider" parent="."]
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 3
+mouse_default_cursor_shape = 14
 value = 50.0
 
 [node name="Label" type="Label" parent="."]

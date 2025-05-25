@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://coxo3xm1ww4tw"]
+[gd_scene load_steps=9 format=3 uid="uid://coxo3xm1ww4tw"]
 
 [ext_resource type="Script" uid="uid://2ubvb8d1lxq5" path="res://src/main.gd" id="1_5q4o7"]
 [ext_resource type="PackedScene" uid="uid://dfndd87h3w6cn" path="res://src/game/game.tscn" id="1_eewff"]
 [ext_resource type="PackedScene" uid="uid://diurqsgogaq0u" path="res://src/UI/volume_slider.tscn" id="2_gh0ne"]
-[ext_resource type="PackedScene" uid="uid://ol3576ryuj5m" path="res://src/UI/high_scores.tscn" id="4_3cfgd"]
+[ext_resource type="PackedScene" uid="uid://ol3576ryuj5m" path="res://src/UI/menus/high_scores.tscn" id="4_3cfgd"]
+[ext_resource type="PackedScene" uid="uid://brgk76wpdoeqd" path="res://src/game/mini_game.tscn" id="5_fyndt"]
+[ext_resource type="PackedScene" uid="uid://ddjcyxr8dewhp" path="res://src/UI/menus/main_menu.tscn" id="5_kmhfv"]
+[ext_resource type="PackedScene" uid="uid://b2ql1yoh7nl18" path="res://src/UI/menus/tutorial_menu.tscn" id="6_rlaii"]
+[ext_resource type="PackedScene" uid="uid://dvcq3ksqiwgam" path="res://src/UI/menus/pause_menu.tscn" id="7_5mrjc"]
 
 [node name="Main" type="Node2D"]
 process_mode = 3
@@ -21,6 +25,28 @@ anchors_preset = 0
 offset_right = 639.0
 offset_bottom = 361.0
 
+[node name="HighScores" parent="CanvasLayer/UI" instance=ExtResource("4_3cfgd")]
+visible = false
+layout_mode = 0
+offset_left = 241.0
+offset_top = 79.0
+offset_right = 414.0
+offset_bottom = 256.0
+
+[node name="MainMenu" parent="CanvasLayer/UI" instance=ExtResource("5_kmhfv")]
+layout_mode = 1
+
+[node name="TutorialMenu" parent="CanvasLayer/UI" instance=ExtResource("6_rlaii")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_right = 4.0
+grow_horizontal = 1
+grow_vertical = 1
+
 [node name="VolumeSlider" parent="CanvasLayer/UI" instance=ExtResource("2_gh0ne")]
 layout_mode = 1
 anchors_preset = 1
@@ -30,20 +56,23 @@ offset_left = -50.0
 offset_right = 0.0
 grow_horizontal = 0
 
-[node name="HighScores" parent="CanvasLayer/UI" instance=ExtResource("4_3cfgd")]
+[node name="PauseMenu" parent="CanvasLayer/UI" instance=ExtResource("7_5mrjc")]
 visible = false
 layout_mode = 0
-offset_left = 241.0
-offset_top = 79.0
-offset_right = 414.0
-offset_bottom = 256.0
+offset_left = 226.0
+offset_top = 76.0
+offset_right = 418.0
+offset_bottom = 224.0
 
-[node name="PausedLabel" type="Label" parent="CanvasLayer/UI"]
-visible = false
-layout_mode = 0
-offset_left = 253.0
-offset_top = 92.0
-offset_right = 407.0
-offset_bottom = 147.0
-theme_override_font_sizes/font_size = 40
-text = "PAUSED"
+[node name="MiniGame" parent="." instance=ExtResource("5_fyndt")]
+
+[connection signal="pressed" from="CanvasLayer/UI/MainMenu/ButtonContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/MainMenu/ButtonContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/MainMenu/ButtonContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/TutorialMenu/Margin2/Button" to="." method="_on_tutorial_menu_return_button_pressed"]
+[connection signal="restart_pressed" from="CanvasLayer/UI/PauseMenu" to="." method="_on_pause_menu_restart_pressed"]
+[connection signal="resume_pressed" from="CanvasLayer/UI/PauseMenu" to="." method="_on_pause_menu_resume_pressed"]
+[connection signal="return_pressed" from="CanvasLayer/UI/PauseMenu" to="." method="_on_pause_menu_return_pressed"]
+
+[editable path="CanvasLayer/UI/MainMenu"]
+[editable path="CanvasLayer/UI/TutorialMenu"]

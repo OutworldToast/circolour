@@ -1,4 +1,4 @@
-extends Node2D
+extends MiniGame
 class_name Game
 
 @export var high_scores: HighScores:
@@ -12,22 +12,10 @@ class_name Game
 		if high_scores:
 			high_scores.try_again_pressed.connect(_on_try_again_button_pressed)
 
-@export var colors: Array[Color] = [
-	Color(1, 0, 0),
-	Color(0, 1, 0),
-	Color(0, 0, 1),
-	Color(1, 1, 0),
-	Color(1, 0, 1),
-	Color(0, 1, 1),
-	Color(1, 0.7, 0),
-	Color(0.7, 1, 0.7),
-	Color(0, 0.5, 1),
-]
-
 @export var BASE_LINE_DELAY: float = 1.8
 @export var MIN_LINE_DELAY: float = 1.0
 
-@onready var player: Player = $Player
+
 @onready var line: Line = $Line
 @onready var grid_container: GridContainer = $CanvasLayer/HUD/PanelContainer/GridContainer
 
@@ -40,18 +28,9 @@ class_name Game
 
 @onready var health_bar: HealthBar = $CanvasLayer/HUD/HealthBar
 
-## it might be better for the trail to be a child of the player?
-## the position gets weird if so
-@onready var current_trail: Trail = $Trail
-
-
-@onready var player_start_position: Vector2 = player.position
 @onready var line_start_position: Vector2 = line.position
 
-
 const HUD_COLOUR_SCENE: PackedScene = preload("uid://dw1delj4qvwby")
-const TRAIL_SCENE: PackedScene = preload("uid://dyerbmhiyfilw")
-
 
 var current_score: float = 0:
 	set(value):
@@ -94,8 +73,6 @@ func start() -> void:
 	current_score = 0
 	current_streak = 0
 
-	high_scores.disappear()
-
 	multiplier_label.show()
 	score_label.show()
 
@@ -108,7 +85,6 @@ func start() -> void:
 	line.move(Vector2(viewport_size.x, line.position.y), calculate_line_delay())
 
 
-
 func create_hud_color(colour: Color, key_string: String = "") -> void:
 
 	var hud_colour: HudColour = HUD_COLOUR_SCENE.instantiate()
@@ -116,20 +92,6 @@ func create_hud_color(colour: Color, key_string: String = "") -> void:
 
 	hud_colour.current_color = colour
 	hud_colour.key_string = key_string
-
-func update_trail() -> void:
-	var previous_trail: Trail = current_trail
-
-	current_trail = TRAIL_SCENE.instantiate()
-	current_trail.player = player
-
-	add_child(current_trail)
-
-	var tween = create_tween()
-	tween.tween_property(previous_trail, "modulate:a", 0.0, previous_trail.trail_duration)
-	await tween.finished
-
-	previous_trail.queue_free()
 
 func calculate_line_delay() -> float:
 
@@ -152,8 +114,8 @@ func update_multiplier() -> void:
 
 func _ready() -> void:
 
-	player.colors = colors
-	current_trail.default_color = colors[0] if colors else Color(1, 1, 1)
+	super()
+
 	line.current_color = colors[1]
 
 	line.finished_movement.connect(_on_line_finished_movement)
@@ -172,9 +134,6 @@ func _ready() -> void:
 		# var key_string: String = input_event.as_text()
 
 		create_hud_color(colour)
-
-	if get_parent():
-		await get_parent().ready
 
 	start()
 
@@ -205,11 +164,6 @@ func _on_player_hit() -> void:
 	current_streak = 0
 	$HitAudio.play()
 
-
-func _on_player_colour_changed() -> void:
-	# play some audio?
-	update_trail()
-
 func _on_player_game_over() -> void:
 
 	ongoing = false
@@ -227,4 +181,5 @@ func _on_player_game_over() -> void:
 
 
 func _on_try_again_button_pressed() -> void:
+	high_scores.disappear()
 	start()
