@@ -11,14 +11,28 @@ class_name Main
 @onready var main_game: Game = $Game
 @onready var mini_game: MiniGame = $MiniGame
 
-var fullscreen: bool = false
+var fullscreen: bool = false:
+	set(value):
+		fullscreen = value
+
+		if fullscreen:
+			settings_data.window_size = DisplayServer.window_get_size()
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_size(settings_data.window_size)
+
+		save_settings_data()
+
 
 var score_data: ScoreData
+var settings_data: SettingsData
 
 func _ready() -> void:
 
-	# load score data if there was any
-	load_data()
+	# load data
+	load_score_data()
+	load_settings_data()
 
 	toggle_main_game(false)
 
@@ -48,17 +62,38 @@ func return_to_main_menu() -> void:
 	if not mini_game.is_inside_tree():
 		add_child(mini_game)
 
-func load_data() -> void:
+func load_score_data() -> void:
 	score_data = ScoreData.load_or_create()
 	main_game.scores = score_data.scores
 
-func save_data() -> void:
+func save_score_data() -> void:
 	score_data.scores = main_game.scores
-	
-	if main_game.best_round_score > score_data.best_round:
-		score_data.best_round = main_game.best_round_score
-
 	score_data.save()
+
+func load_settings_data() -> void:
+	settings_data = SettingsData.load_or_create()
+
+	volume_slider.slider.value = settings_data.volume
+
+	fullscreen = settings_data.fullscreen
+
+	if not fullscreen:
+		DisplayServer.window_set_size(settings_data.window_size)
+
+
+	if settings_data.colors:
+		main_game.colors = settings_data.colors
+
+func save_settings_data() -> void:
+	settings_data.fullscreen = fullscreen
+
+	if not fullscreen:
+		settings_data.window_size = DisplayServer.window_get_size()
+
+	settings_data.volume = volume_slider.slider.value
+
+	settings_data.colors = main_game.colors
+	settings_data.save()
 
 #endregion Helpers
 
@@ -66,6 +101,7 @@ func save_data() -> void:
 #region ButtonSignals
 
 func _on_exit_button_pressed() -> void:
+	save_settings_data()
 	get_tree().quit()
 
 
@@ -113,7 +149,7 @@ func _on_pause_menu_return_pressed() -> void:
 #endregion ButtonSignals
 
 func _on_game_score_earned() -> void:
-	save_data()
+	save_score_data()
 
 
 func _process(_delta: float) -> void:
@@ -124,8 +160,6 @@ func _process(_delta: float) -> void:
 
 		fullscreen = not fullscreen
 
-		if fullscreen:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		else:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			DisplayServer.window_set_size(Vector2(1280, 720))
+
+func _on_volume_slider_volume_changed(_value: float) -> void:
+	save_settings_data()

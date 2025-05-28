@@ -4,7 +4,6 @@ class_name ScoreData
 @export var scores: Array[int]
 @export var best_round: int
 
-@export var colours: Array[Color]
 
 func save() -> void:
     ResourceSaver.save(self, "user://score_data.tres")

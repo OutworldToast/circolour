@@ -1,6 +1,8 @@
 extends VBoxContainer
 class_name VolumeSlider
 
+signal volume_changed(value: float)
+
 ## created following this tutorial https://www.youtube.com/watch?v=aFkRmtGiZCw
 
 @export var bus_name: String = "Master"
@@ -25,10 +27,6 @@ var visibility_tween: Tween
 
 func _ready() -> void:
 
-	slider.value = AudioServer.get_bus_volume_linear(
-		AudioServer.get_bus_index(bus_name)
-	) * 100.0
-
 	$Label.text = str(int(slider.value))
 	bus_index = AudioServer.get_bus_index(bus_name)
 
@@ -51,6 +49,11 @@ func _on_slider_value_changed(value: float) -> void:
 	else:
 		icon.texture = on_icon
 
+
+func _on_slider_drag_ended(value_changed:bool) -> void:
+	if value_changed:
+		volume_changed.emit(slider.value)
+
 func _on_texture_rect_gui_input(event:InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if slider.value == 0.0:
@@ -60,6 +63,8 @@ func _on_texture_rect_gui_input(event:InputEvent) -> void:
 			# store current value before muting
 			previous_value = slider.value
 			slider.value = 0.0
+
+		volume_changed.emit(slider.value)
 
 func tween_visibility(visible_: bool) -> void:
 	
@@ -87,4 +92,3 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	tween_visibility(false)
-

@@ -71,6 +71,7 @@ offset_bottom = 224.0
 [connection signal="pressed" from="CanvasLayer/UI/MainMenu/ButtonContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/MainMenu/ButtonContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/TutorialMenu/Margin2/Button" to="." method="_on_tutorial_menu_return_button_pressed"]
+[connection signal="volume_changed" from="CanvasLayer/UI/VolumeSlider" to="." method="_on_volume_slider_volume_changed"]
 [connection signal="restart_pressed" from="CanvasLayer/UI/PauseMenu" to="." method="_on_pause_menu_restart_pressed"]
 [connection signal="resume_pressed" from="CanvasLayer/UI/PauseMenu" to="." method="_on_pause_menu_resume_pressed"]
 [connection signal="return_pressed" from="CanvasLayer/UI/PauseMenu" to="." method="_on_pause_menu_return_pressed"]
