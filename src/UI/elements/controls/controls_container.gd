@@ -1,7 +1,14 @@
 extends VBoxContainer
 class_name ControlsContainer
 
-@export var label_text: String = "To Example"
+@export var label_text: String = "To Example":
+    set(value):
+        label_text = value
+
+        if not is_node_ready():
+            await ready
+        
+        label.text = value
 
 @onready var top_row: HBoxContainer = $TopRow
 @onready var center_row: HBoxContainer = $CenterRow
@@ -36,8 +43,6 @@ enum Positions {
 func _ready() -> void:
 
     set_row_visibility()
-    
-    label.text = label_text
 
 func set_row_visibility() -> void:
 

@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cfsv7snbqj6lc" path="res://assets/input_prompts/keyboard_d.png" id="5_uwqg7"]
 
 [node name="ControlsContainer" type="VBoxContainer"]
-offset_right = 104.0
-offset_bottom = 95.0
+offset_right = 92.0
+offset_bottom = 119.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_4urab")
@@ -17,6 +17,7 @@ script = ExtResource("1_4urab")
 [node name="TopRow" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
+alignment = 1
 
 [node name="Left" parent="TopRow" instance=ExtResource("1_8fv5s")]
 layout_mode = 2
@@ -31,6 +32,7 @@ layout_mode = 2
 [node name="CenterRow" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
+alignment = 1
 
 [node name="Left" parent="CenterRow" instance=ExtResource("1_8fv5s")]
 layout_mode = 2
@@ -46,6 +48,7 @@ texture = ExtResource("5_uwqg7")
 
 [node name="BottomRow" type="HBoxContainer" parent="."]
 layout_mode = 2
+alignment = 1
 
 [node name="Left" parent="BottomRow" instance=ExtResource("1_8fv5s")]
 layout_mode = 2
@@ -60,5 +63,5 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 6
 size_flags_stretch_ratio = 0.5
-text = "To Move"
+text = "To Change Colour"
 horizontal_alignment = 1

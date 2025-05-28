@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://1gl25atjy7nm" path="res://src/UI/menus/main_menu.gd" id="1_huq70"]
 [ext_resource type="PackedScene" uid="uid://dr1kjhi1kud2t" path="res://src/UI/elements/controls/controls_container.tscn" id="2_7yfvt"]
-[ext_resource type="PackedScene" uid="uid://c44hxbr433p4f" path="res://src/UI/elements/controls/alt_buttons_container.tscn" id="3_ub63x"]
+[ext_resource type="PackedScene" uid="uid://5o13qwtlm85l" path="res://src/UI/elements/controls/alt_controls_container.tscn" id="3_ub63x"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_huq70"]
 
@@ -66,6 +66,7 @@ text = "Start"
 flat = true
 
 [node name="TutorialButton" type="Button" parent="ButtonContainer/ButtonContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
@@ -83,10 +84,10 @@ flat = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_huq70")
 
-[node name="AltButtonsContainer" parent="ButtonContainer" instance=ExtResource("3_ub63x")]
+[node name="AltControlsContainer" parent="ButtonContainer" instance=ExtResource("3_ub63x")]
 layout_mode = 2
 
 [node name="Margin6" type="PanelContainer" parent="ButtonContainer"]

@@ -1,0 +1,104 @@
+[gd_scene load_steps=21 format=3 uid="uid://5o13qwtlm85l"]
+
+[ext_resource type="PackedScene" uid="uid://dr1kjhi1kud2t" path="res://src/UI/elements/controls/controls_container.tscn" id="1_udbal"]
+[ext_resource type="Script" uid="uid://cy4f3t3jbluox" path="res://src/UI/elements/controls/alt_controls_container.gd" id="1_y2fwx"]
+[ext_resource type="Texture2D" uid="uid://b77casoidi65m" path="res://assets/input_prompts/keyboard_7.png" id="2_wyxhv"]
+[ext_resource type="Texture2D" uid="uid://cq8i3ys15ygmp" path="res://assets/input_prompts/keyboard_8.png" id="3_7jstq"]
+[ext_resource type="Texture2D" uid="uid://b5d7wm0jrgrvr" path="res://assets/input_prompts/keyboard_9.png" id="4_kbvt0"]
+[ext_resource type="Texture2D" uid="uid://djlqef0irsm7h" path="res://assets/input_prompts/keyboard_4.png" id="5_pd567"]
+[ext_resource type="Texture2D" uid="uid://b3l4d1afh5b3j" path="res://assets/input_prompts/keyboard_5.png" id="6_xqhif"]
+[ext_resource type="Texture2D" uid="uid://db4g5pvdkwdjs" path="res://assets/input_prompts/keyboard_6.png" id="7_71a4p"]
+[ext_resource type="Texture2D" uid="uid://c2nkj42gtaq4s" path="res://assets/input_prompts/keyboard_1.png" id="8_qysw3"]
+[ext_resource type="Texture2D" uid="uid://cw7thb0eiwwo8" path="res://assets/input_prompts/keyboard_2.png" id="9_vnohw"]
+[ext_resource type="Texture2D" uid="uid://dluml71ah7f8s" path="res://assets/input_prompts/keyboard_3.png" id="10_1l6ul"]
+[ext_resource type="Texture2D" uid="uid://bhlt8wq4nnt1l" path="res://assets/input_prompts/keyboard_i.png" id="12_tacdx"]
+[ext_resource type="Texture2D" uid="uid://cslprn7lp8ae4" path="res://assets/input_prompts/keyboard_o.png" id="13_62gcw"]
+[ext_resource type="Texture2D" uid="uid://bnffrna8ng2c7" path="res://assets/input_prompts/keyboard_p.png" id="14_jxqbs"]
+[ext_resource type="Texture2D" uid="uid://1atl4uo2y33a" path="res://assets/input_prompts/keyboard_k.png" id="15_6g37y"]
+[ext_resource type="Texture2D" uid="uid://cibntn7c3u6q0" path="res://assets/input_prompts/keyboard_l.png" id="16_3dkcn"]
+[ext_resource type="Texture2D" uid="uid://ce8h77lrwjh0l" path="res://assets/input_prompts/keyboard_semicolon.png" id="17_lhfkj"]
+[ext_resource type="Texture2D" uid="uid://bc0v47u3vt2ed" path="res://assets/input_prompts/keyboard_comma.png" id="18_2xv1x"]
+[ext_resource type="Texture2D" uid="uid://ce8f20ybcbasn" path="res://assets/input_prompts/keyboard_period.png" id="19_6jcmh"]
+[ext_resource type="Texture2D" uid="uid://by85jxedxhomm" path="res://assets/input_prompts/keyboard_slash_forward.png" id="20_eppxd"]
+
+[node name="AltControlsContainer" type="VBoxContainer"]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+script = ExtResource("1_y2fwx")
+label_text = "To Change Colour"
+
+[node name="AltButton" type="CheckButton" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Alt"
+alignment = 2
+
+[node name="MainControlsContainer" parent="." instance=ExtResource("1_udbal")]
+layout_mode = 2
+alignment = 1
+label_text = "On Numpad"
+
+[node name="Left" parent="MainControlsContainer/TopRow" index="0"]
+texture = ExtResource("2_wyxhv")
+
+[node name="Center" parent="MainControlsContainer/TopRow" index="1"]
+texture = ExtResource("3_7jstq")
+
+[node name="Right" parent="MainControlsContainer/TopRow" index="2"]
+texture = ExtResource("4_kbvt0")
+
+[node name="Left" parent="MainControlsContainer/CenterRow" index="0"]
+texture = ExtResource("5_pd567")
+
+[node name="Center" parent="MainControlsContainer/CenterRow" index="1"]
+texture = ExtResource("6_xqhif")
+
+[node name="Right" parent="MainControlsContainer/CenterRow" index="2"]
+texture = ExtResource("7_71a4p")
+
+[node name="Left" parent="MainControlsContainer/BottomRow" index="0"]
+texture = ExtResource("8_qysw3")
+
+[node name="Center" parent="MainControlsContainer/BottomRow" index="1"]
+texture = ExtResource("9_vnohw")
+
+[node name="Right" parent="MainControlsContainer/BottomRow" index="2"]
+texture = ExtResource("10_1l6ul")
+
+[node name="AltControlsContainer" parent="." instance=ExtResource("1_udbal")]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Left" parent="AltControlsContainer/TopRow" index="0"]
+texture = ExtResource("12_tacdx")
+
+[node name="Center" parent="AltControlsContainer/TopRow" index="1"]
+texture = ExtResource("13_62gcw")
+
+[node name="Right" parent="AltControlsContainer/TopRow" index="2"]
+texture = ExtResource("14_jxqbs")
+
+[node name="Left" parent="AltControlsContainer/CenterRow" index="0"]
+texture = ExtResource("15_6g37y")
+
+[node name="Center" parent="AltControlsContainer/CenterRow" index="1"]
+texture = ExtResource("16_3dkcn")
+
+[node name="Right" parent="AltControlsContainer/CenterRow" index="2"]
+texture = ExtResource("17_lhfkj")
+
+[node name="Left" parent="AltControlsContainer/BottomRow" index="0"]
+texture = ExtResource("18_2xv1x")
+
+[node name="Center" parent="AltControlsContainer/BottomRow" index="1"]
+texture = ExtResource("19_6jcmh")
+
+[node name="Right" parent="AltControlsContainer/BottomRow" index="2"]
+texture = ExtResource("20_eppxd")
+
+[connection signal="toggled" from="AltButton" to="." method="_on_alt_button_toggled"]
+
+[editable path="MainControlsContainer"]
+[editable path="AltControlsContainer"]
