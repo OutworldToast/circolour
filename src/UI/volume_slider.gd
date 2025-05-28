@@ -25,6 +25,10 @@ var visibility_tween: Tween
 
 func _ready() -> void:
 
+	slider.value = AudioServer.get_bus_volume_linear(
+		AudioServer.get_bus_index(bus_name)
+	) * 100.0
+
 	$Label.text = str(int(slider.value))
 	bus_index = AudioServer.get_bus_index(bus_name)
 

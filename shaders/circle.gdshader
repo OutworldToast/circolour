@@ -13,7 +13,7 @@ void fragment() {
 	float dist = distance(UV, vec2(0.5));
 
 	float alpha = 1.0 - smoothstep(radius, radius + edge, dist);
-	
+
 	vec4 blended_color = mix(color, previous_color, blend_strength);
 
 	COLOR = vec4(blended_color.rgb, color.a * alpha);

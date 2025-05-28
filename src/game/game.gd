@@ -77,6 +77,8 @@ var current_streak: int = 0:
 		# update the score whenever the streak gets higher
 		if value > 0:
 			current_score += current_multiplier
+		else:
+			update_round_score()
 
 		current_streak = value
 		update_multiplier()
@@ -88,6 +90,9 @@ var ongoing: bool = false:
 		player.dead = not value
 
 var scores: Array[int] = []
+
+var round_start_score: int = 0
+var best_round_score: int = 0
 
 func start() -> void:
 
@@ -153,6 +158,17 @@ func update_multiplier() -> void:
 	# higher is faster ramping
 	var multiplier_scale := 0.08
 	current_multiplier = 1.0 + (max_multiplier - 1.0) * (1.0 - exp(-multiplier_scale * current_streak))
+
+func update_round_score() -> void:
+
+	var current_round_score: int = int(current_score - round_start_score)
+	
+	if current_round_score > best_round_score:
+		best_round_score = current_round_score
+
+	round_start_score = int(current_score)
+
+	print("Scored %d points this round!" % current_round_score)
 
 func _ready() -> void:
 

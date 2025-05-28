@@ -54,6 +54,10 @@ func load_data() -> void:
 
 func save_data() -> void:
 	score_data.scores = main_game.scores
+	
+	if main_game.best_round_score > score_data.best_round:
+		score_data.best_round = main_game.best_round_score
+
 	score_data.save()
 
 #endregion Helpers
