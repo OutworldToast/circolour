@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnquvjas415r5"]
+
+[ext_resource type="Script" uid="uid://c8y1q5t8p3dww" path="res://src/UI/elements/controls/input_prompt.gd" id="1_juflf"]
+
+[node name="InputPrompt" type="TextureRect"]
+custom_minimum_size = Vector2(28, 28)
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+expand_mode = 1
+script = ExtResource("1_juflf")

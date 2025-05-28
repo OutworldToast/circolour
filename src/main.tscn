@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://2ubvb8d1lxq5" path="res://src/main.gd" id="1_5q4o7"]
 [ext_resource type="PackedScene" uid="uid://dfndd87h3w6cn" path="res://src/game/game.tscn" id="1_eewff"]
-[ext_resource type="PackedScene" uid="uid://diurqsgogaq0u" path="res://src/UI/volume_slider.tscn" id="2_gh0ne"]
+[ext_resource type="PackedScene" uid="uid://diurqsgogaq0u" path="res://src/UI/elements/volume_slider.tscn" id="2_gh0ne"]
 [ext_resource type="PackedScene" uid="uid://ol3576ryuj5m" path="res://src/UI/menus/high_scores.tscn" id="4_3cfgd"]
 [ext_resource type="PackedScene" uid="uid://brgk76wpdoeqd" path="res://src/game/mini_game.tscn" id="5_fyndt"]
 [ext_resource type="PackedScene" uid="uid://ddjcyxr8dewhp" path="res://src/UI/menus/main_menu.tscn" id="5_kmhfv"]
@@ -67,9 +67,9 @@ offset_bottom = 224.0
 [node name="MiniGame" parent="." instance=ExtResource("5_fyndt")]
 
 [connection signal="score_earned" from="Game" to="." method="_on_game_score_earned"]
-[connection signal="pressed" from="CanvasLayer/UI/MainMenu/ButtonContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/MainMenu/ButtonContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/MainMenu/ButtonContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/MainMenu/ButtonContainer/ButtonContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/MainMenu/ButtonContainer/ButtonContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/MainMenu/ButtonContainer/ButtonContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/TutorialMenu/Margin2/Button" to="." method="_on_tutorial_menu_return_button_pressed"]
 [connection signal="volume_changed" from="CanvasLayer/UI/VolumeSlider" to="." method="_on_volume_slider_volume_changed"]
 [connection signal="restart_pressed" from="CanvasLayer/UI/PauseMenu" to="." method="_on_pause_menu_restart_pressed"]
